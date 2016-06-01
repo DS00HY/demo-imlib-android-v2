@@ -3,13 +3,12 @@ package io.rong.imlib.message;
 import android.os.Parcel;
 import android.util.Log;
 
-import com.sea_monster.common.ParcelUtils;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
+import io.rong.common.ParcelUtils;
 import io.rong.imlib.MessageTag;
 import io.rong.imlib.model.MessageContent;
 import io.rong.imlib.model.UserInfo;

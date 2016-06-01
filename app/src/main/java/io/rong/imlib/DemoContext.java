@@ -30,8 +30,6 @@ public class DemoContext {
 
     public Context mContext;
 
-    public RongIMClient mRongIMClient;
-
     public String userId;
 
 
@@ -59,13 +57,9 @@ public class DemoContext {
 
     }
 
-    public void setRongIMClient(RongIMClient rongIMClient) {
-        mRongIMClient = rongIMClient;
-    }
-
     public void registerReceiveMessageListener() {
 
-        mRongIMClient.setOnReceiveMessageListener(onReceiveMessageListener);
+        RongIMClient.setOnReceiveMessageListener(onReceiveMessageListener);
     }
 
     RongIMClient.OnReceiveMessageListener onReceiveMessageListener = new RongIMClient.OnReceiveMessageListener() {
@@ -91,7 +85,7 @@ public class DemoContext {
                     @Override
                     public void run() {
 
-                        mRongIMClient.downloadMedia(Conversation.ConversationType.PRIVATE, userId, RongIMClient.MediaType.IMAGE, imageMessage.getRemoteUri().toString(), new RongIMClient.DownloadMediaCallback() {
+                        RongIMClient.getInstance().downloadMedia(Conversation.ConversationType.PRIVATE, userId, RongIMClient.MediaType.IMAGE, imageMessage.getRemoteUri().toString(), new RongIMClient.DownloadMediaCallback() {
 
                             @Override
                             public void onProgress(int i) {

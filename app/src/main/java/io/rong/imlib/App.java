@@ -1,8 +1,8 @@
 package io.rong.imlib;
 
+import android.app.ActivityManager;
 import android.app.Application;
-
-import io.rong.imlib.message.DemoCommandNotificationMessage;
+import android.content.Context;
 
 /**
  * Created by Bob on 15/6/5.
@@ -13,14 +13,31 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         /**
-         *  IMLib SDK调用第一步 初始化
-         * context上下文
+         * OnCreate 会被多个进程重入，这段保护代码，确保只有您需要使用 RongIMClient 的进程和 Push 进程执行了 init。
+         * io.rong.push 为融云 push 进程名称，不可修改。
          */
-        RongIMClient.init(this);
-
-
+        if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext()))) {
+            RongIMClient.init(this);
+        }
 
         DemoContext.getInstance().init(this);
 
+    }
+
+    public static String getCurProcessName(Context context) {
+
+        int pid = android.os.Process.myPid();
+
+        ActivityManager activityManager = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+
+        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager
+                .getRunningAppProcesses()) {
+
+            if (appProcess.pid == pid) {
+                return appProcess.processName;
+            }
+        }
+        return null;
     }
 }

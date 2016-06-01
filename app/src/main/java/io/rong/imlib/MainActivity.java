@@ -36,7 +36,7 @@ import io.rong.message.VoiceMessage;
 
 public class MainActivity extends Activity implements View.OnClickListener, Handler.Callback {
 
-    //    public static final String TOKEN = "HtymJWYc8lTwfKgcAN9P57I6ZiT8q7s0UEaMPWY0lMw1SnA9yXU+KsOb5slbLWhxvJ6WgjQYA7h94DvkFpmc5g==0";//112
+//        public static final String TOKEN = "HtymJWYc8lTwfKgcAN9P57I6ZiT8q7s0UEaMPWY0lMw1SnA9yXU+KsOb5slbLWhxvJ6WgjQYA7h94DvkFpmc5g==0";//112
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final String TOKEN = "iE8FnsJDRPZa8zN6m3RQFV4PgRGJ4lryRR/tEnSS1d369tkxMOvibuU0SGJSZ+Q4Cp4acj43FRUPuryfFtVhkw==";//12345
 
@@ -146,7 +146,6 @@ public class MainActivity extends Activity implements View.OnClickListener, Hand
                         }
                     });
 
-                    DemoContext.getInstance().setRongIMClient(mRongIMClient);
                     DemoContext.getInstance().registerReceiveMessageListener();
 
                 } catch (Exception e) {
@@ -227,14 +226,19 @@ public class MainActivity extends Activity implements View.OnClickListener, Hand
 
     private void sendMessage(final MessageContent msg) {
         if (mRongIMClient != null) {
-            mRongIMClient.sendMessage(Conversation.ConversationType.SYSTEM, mUserIdTest, msg, null, null, new RongIMClient.SendMessageCallback() {
+            RongIMClient.getInstance().sendMessage(Conversation.ConversationType.PRIVATE, mUserIdTest, msg, null, null, new IRongCallback.ISendMessageCallback() {
                 @Override
-                public void onError(Integer integer, RongIMClient.ErrorCode errorCode) {
+                public void onAttached(io.rong.imlib.model.Message message) {
+                    Log.d("sendMessage", "onAttached");
+                }
+
+                @Override
+                public void onError(io.rong.imlib.model.Message message, RongIMClient.ErrorCode errorCode) {
                     Log.d("sendMessage", "----发发发发发--发送消息失败----ErrorCode----" + errorCode.getValue());
                 }
 
                 @Override
-                public void onSuccess(Integer integer) {
+                public void onSuccess(io.rong.imlib.model.Message message) {
                     if (msg instanceof TextMessage) {
                         TextMessage textMessage = (TextMessage) msg;
                         Log.d("sendMessage", "TextMessage---发发发发发--发送了一条【文字消息】-----" + textMessage.getContent());
