@@ -428,7 +428,7 @@ public class MainActivity extends FragmentActivity {
             // 生成缩略图
             Matrix matrix = new Matrix();
             matrix.setRectToRect(new RectF(0, 0, bmpSource.getWidth(), bmpSource.getHeight()),
-                    new RectF(0, 0, 160, 160), Matrix.ScaleToFit.CENTER);
+                    new RectF(0, 0, 240, 240), Matrix.ScaleToFit.CENTER);
             Bitmap bmpThumb = Bitmap.createBitmap(bmpSource, 0, 0, bmpSource.getWidth(), bmpSource.getHeight(), matrix, true);
             imageFileThumb.createNewFile();
             fosThumb = new FileOutputStream(imageFileThumb);
