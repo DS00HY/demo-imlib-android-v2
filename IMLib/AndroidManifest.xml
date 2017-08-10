@@ -2,7 +2,7 @@
     package="io.rong.imlib">
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="15"
         android:targetSdkVersion="20" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -58,7 +58,7 @@
         <!-- push服务 -->
         <service
             android:name="io.rong.push.PushService"
-            android:exported="false"
+            android:exported="true"
             android:process="io.rong.push">  <!-- push进程，可以改名 -->
         </service>
 

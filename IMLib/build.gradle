@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
+        versionCode 2017071921
+        versionName "2.8.14 Stable"
     }
 
     sourceSets {
@@ -18,6 +18,10 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {

@@ -644,6 +644,11 @@ public class MainActivity extends FragmentActivity {
                     mProgressDialog.show();
                 mProgressDialog.setProgress(i);
             }
+
+            @Override
+            public void onCanceled(Message message) {
+
+            }
         });
     }
 
