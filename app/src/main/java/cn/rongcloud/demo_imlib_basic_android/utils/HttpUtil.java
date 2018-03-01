@@ -1,10 +1,8 @@
 package cn.rongcloud.demo_imlib_basic_android.utils;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 
@@ -25,13 +23,14 @@ public class HttpUtil {
     }
 
     public void post(final String appKey, final String appSecret, final String registerData, final HttpUtil.OnResponse callback) {
-        final String path = "https://api.cn.ronghub.com/user/getToken.json";
+        final String path = "http://api.cn.ronghub.com/user/getToken.json";
         final String nonce = Integer.toString(new Random().nextInt(1000));
         final String timeStamp = Long.toString(System.currentTimeMillis());
         final String signature = SHA1Tool.SHA1(appSecret + nonce + timeStamp);
 
         new Thread() {
             private HttpURLConnection httpURLConnection;
+
             @Override
             public void run() {
                 try {
@@ -55,7 +54,7 @@ public class HttpUtil {
 
                     InputStream inputStream;
                     int code = httpURLConnection.getResponseCode();
-                    if(code == 200)
+                    if (code == 200)
                         inputStream = httpURLConnection.getInputStream();
                     else
                         inputStream = httpURLConnection.getErrorStream();

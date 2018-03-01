@@ -21,9 +21,9 @@ public class FakeServer {
      */
     public static void getToken(String userId, String userName, String userPortrait, HttpUtil.OnResponse callback) {
         try {
-            String register_data = "userId=" + URLEncoder.encode(userId,"UTF-8")
-                    + "&name=" + URLEncoder.encode(userName,"UTF-8")
-                    + "&portraitUri=" + URLEncoder.encode(userPortrait,"UTF-8");
+            String register_data = "userId=" + URLEncoder.encode(userId, "UTF-8")
+                    + "&name=" + URLEncoder.encode(userName, "UTF-8")
+                    + "&portraitUri=" + URLEncoder.encode(userPortrait, "UTF-8");
             HttpUtil httpUtil = new HttpUtil();
             httpUtil.setOnResponse(callback);
             httpUtil.post(APP_KEY, APP_SECRET, register_data, callback);

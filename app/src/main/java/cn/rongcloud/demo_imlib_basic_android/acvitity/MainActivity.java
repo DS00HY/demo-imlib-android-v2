@@ -29,7 +29,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Iterator;
 import java.util.List;
 
 import cn.rongcloud.demo_imlib_basic_android.R;
@@ -729,7 +728,7 @@ public class MainActivity extends FragmentActivity {
                         if (messages != null) {
                             Log.d(TAG, "本地存储的历史消息个数为 " + messages.size());
 
-                            for (Message message: messages) {
+                            for (Message message : messages) {
                                 handleMessage(message.getContent());
                             }
                         } else
@@ -753,7 +752,7 @@ public class MainActivity extends FragmentActivity {
                 if (messages != null) {
                     Log.d(TAG, "远端服务器存储的历史消息个数为 " + messages.size());
 
-                    for (Message message: messages) {
+                    for (Message message : messages) {
                         handleMessage(message.getContent());
                     }
                 } else
