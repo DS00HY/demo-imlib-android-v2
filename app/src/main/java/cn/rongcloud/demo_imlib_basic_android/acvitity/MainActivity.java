@@ -461,7 +461,7 @@ public class MainActivity extends FragmentActivity {
                 }
             if (fosThumb != null)
                 try {
-                    fosSource.close();
+                    fosThumb.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
